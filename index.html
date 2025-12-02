@@ -1,1 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard Producción – Semanas 42–47</title>
+
+  <!-- PLOTLY -->
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+  <!-- TIPOGRAFÍA -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- PANEL SUPERIOR -->
+  <div id="panelPequenos">
+    Selecciona una pestaña para ver la interpretación del gráfico.
+  </div>
+
+  <!-- NAVEGACIÓN -->
+  <div class="nav">
+    <button class="tab-btn active" data-target="general">General</button>
+    <button class="tab-btn" data-target="fivesBeach">The Fives Beach</button>
+    <button class="tab-btn" data-target="oceanfront">The Fives Oceanfront</button>
+    <button class="tab-btn" data-target="beachfront">The Beachfront</button>
+    <button class="tab-btn" data-target="downtown">The Fives Downtown</button>
+    <button class="tab-btn" data-target="contactCenter">Contact Center</button>
+    <button class="tab-btn" data-target="web">Web</button>
+    <button class="tab-btn" data-target="otas">OTA´s</button>
+    <button class="tab-btn" data-target="bedbank">Bedbank</button>
+    <button class="tab-btn" data-target="performanceWeb">Performance Web</button>
+    <button class="tab-btn" data-target="paises">Producción por Países</button>
+    <button class="tab-btn" data-target="comparacionPaises">Comparación Países</button>
+    <button class="tab-btn" data-target="medios">Producción por Medios</button>
+
+    <!-- NUEVO -->
+    <button class="tab-btn" data-target="facebook">Facebook</button>
+    <button class="tab-btn" data-target="funnelEcommerce">Funnel E-Commerce</button>
+  </div>
+
+  <!-- =======================================================
+                       GENERAL
+  ======================================================= -->
+  <div id="general" class="tab-content active">
+    <h2>Producción Semanas 42–47 – General</h2>
+    <div class="grafico-wrapper"><div id="graficoGeneral"></div></div>
+    <div class="interpretacion" id="interpretacion-general"></div>
+  </div>
+
+  <!-- =======================================================
+                       BEACH
+  ======================================================= -->
+  <div id="fivesBeach" class="tab-content">
+    <h2>The Fives Beach – W42–W47</h2>
+    <div class="grafico-wrapper"><div id="graficoBeach"></div></div>
+    <div class="interpretacion" id="interpretacion-beach"></div>
+  </div>
+
+  <!-- =======================================================
+                       OCEANFRONT
+  ======================================================= -->
+  <div id="oceanfront" class="tab-content">
+    <h2>Oceanfront – W42–W47</h2>
+    <div class="grafico-wrapper"><div id="graficoOceanfront"></div></div>
+    <div class="interpretacion" id="interpretacion-oceanfront"></div>
+  </div>
+
+  <!-- =======================================================
+                       BEACHFRONT
+  ======================================================= -->
+  <div id="beachfront" class="tab-content">
+    <h2>Beachfront – W42–W47</h2>
+    <div class="grafico-wrapper"><div id="graficoBeachfront"></div></div>
+    <div class="interpretacion" id="interpretacion-beachfront"></div>
+  </div>
+
+  <!-- =======================================================
+                       DOWNTOWN
+  ======================================================= -->
+  <div id="downtown" class="tab-content">
+    <h2>Downtown – W42–W47</h2>
+    <div class="grafico-wrapper"><div id="graficoDowntown"></div></div>
+    <div class="interpretacion" id="interpretacion-downtown"></div>
+  </div>
+
+  <!-- =======================================================
+                       CONTACT CENTER
+  ======================================================= -->
+  <div id="contactCenter" class="tab-content">
+    <h2>CONTACT CENTER – W42–W47</h2>
+
+    <div class="cc-grid">
+
+      <div class="cc-panel cc-table-panel">
+        <table class="cc-table" id="tablaContactCenter"></table>
+        <div id="ccVariacion" class="cc-variacion"></div>
+      </div>
+
+      <div class="cc-panel">
+        <h3 class="cc-subtitle">Cancelaciones por mes</h3>
+        <div id="graficoCcCancelMes"></div>
+      </div>
+
+      <div class="cc-panel">
+        <h3 class="cc-subtitle">Arrival Date</h3>
+        <div id="graficoCcArrival"></div>
+      </div>
+
+      <div class="cc-panel cc-full">
+        <div id="graficoContactCenter"></div>
+      </div>
+
+    </div>
+
+    <div class="interpretacion" id="interpretacion-contactcenter"></div>
+  </div>
+
+  <!-- =======================================================
+                       WEB
+  ======================================================= -->
+  <div id="web" class="tab-content">
+    <h2>WEB – W42–W47</h2>
+
+    <div class="cc-grid">
+
+      <div class="cc-panel cc-table-panel">
+        <table class="cc-table" id="tablaWeb"></table>
+        <div id="webVariacion" class="cc-variacion"></div>
+      </div>
+
+      <div class="cc-panel">
+        <h3 class="cc-subtitle">Cancelaciones</h3>
+        <div id="graficoWebCancelMes"></div>
+      </div>
+
+      <div class="cc-panel">
+        <h3 class="cc-subtitle">Arrival Date</h3>
+        <div id="graficoWebArrival"></div>
+      </div>
+
+      <div class="cc-panel cc-full">
+        <div id="graficoWebLineas"></div>
+      </div>
+
+      <div class="interpretacion" id="interpretacion-web"></div>
+
+    </div>
+  </div>
+
+  <!-- =======================================================
+                       OTAS
+  ======================================================= -->
+  <div id="otas" class="tab-content">
+    <h2>OTAs – W42–W47</h2>
+
+    <div class="ota-grid">
+
+      <div class="ota-panel ota-table-panel">
+        <table class="ota-table">
+          <thead>
+            <tr>
+              <th>Semana</th>
+              <th>Brutas</th>
+              <th>Cancel</th>
+              <th>Netas</th>
+              <th>%CXL</th>
+              <th>Reservas</th>
+            </tr>
+          </thead>
+          <tbody id="tablaOtasBody"></tbody>
+        </table>
+
+        <div class="ota-variacion">
+          <span id="otaVariacionPorcentaje"></span>
+          <span id="otaVariacionMonto"></span>
+        </div>
+      </div>
+
+      <div class="ota-panel">
+        <h3 class="ota-subtitle">Cancelaciones por mes</h3>
+        <div id="graficoOtasCancelMes"></div>
+      </div>
+
+      <div class="ota-panel">
+        <h3 class="ota-subtitle">Arrival</h3>
+        <div id="graficoOtasArrival"></div>
+      </div>
+
+      <!-- BOTÓN NUEVO: PANTALLA COMPLETA OTAs -->
+      <div class="ota-panel ota-full">
+        <button id="btnOtasFull" style="
+          background:#003f5c;
+          color:white;
+          padding:8px 14px;
+          border:none;
+          border-radius:4px;
+          margin-bottom:10px;
+          font-family:Inter;
+          cursor:pointer;
+        ">
+          Ver OTAs en pantalla completa
+        </button>
+
+        <div id="graficoOtasLineas"></div>
+      </div>
+
+    </div>
+
+    <div class="interpretacion" id="interpretacion-otas"></div>
+  </div>
+
+  <!-- =======================================================
+                       BEDBANK
+  ======================================================= -->
+  <div id="bedbank" class="tab-content">
+    <h2 class="bb-title">Bedbank – W42–W47</h2>
+
+    <div class="bb-grid">
+
+      <div class="bb-panel bb-table-panel">
+        <table class="bb-table" id="tablaBedbank"></table>
+        <div id="bbVariacion" class="bb-variacion"></div>
+      </div>
+
+      <div class="bb-panel">
+        <h3 class="bb-subtitle">Cancelaciones por mes</h3>
+        <div id="graficoBedbankCancelMes"></div>
+      </div>
+
+      <div class="bb-panel">
+        <h3 class="bb-subtitle">Arrival Date</h3>
+        <div id="graficoBedbankArrival"></div>
+      </div>
+
+      <div class="bb-panel bb-full">
+        <div id="graficoBedbankLineas"></div>
+      </div>
+
+    </div>
+
+    <div class="interpretacion" id="interpretacion-bedbank"></div>
+  </div>
+
+  <!-- =======================================================
+                       PRODUCCIÓN POR PAÍSES
+  ======================================================= -->
+  <div id="paises" class="tab-content">
+    <h2>Producción por Países – Semanas 42–47</h2>
+    <div class="grafico-wrapper"><div id="graficoPaises"></div></div>
+    <div class="grafico-wrapper"><div id="graficoPaisesSemanal"></div></div>
+    <div class="interpretacion" id="interpretacion-paises"></div>
+  </div>
+
+  <!-- =======================================================
+                       COMPARACIÓN PAÍSES
+  ======================================================= -->
+  <div id="comparacionPaises" class="tab-content">
+    <h2>Comparación de Países – Producción Total (W42–W47)</h2>
+    <div class="grafico-wrapper"><div id="graficoRankingPaises"></div></div>
+    <div class="grafico-wrapper" style="margin-top:20px;"><div id="graficoPiePaises"></div></div>
+    <div class="interpretacion" id="tablaRankingPaises"></div>
+  </div>
+
+  <!-- =======================================================
+                       PRODUCCIÓN POR MEDIOS
+  ======================================================= -->
+  <div id="medios" class="tab-content">
+    <h2>Producción por Medios – Semanas 42–47</h2>
+    <div class="grafico-wrapper"><div id="graficoMedios"></div></div>
+    <div class="interpretacion" id="interpretacion-medios"></div>
+  </div>
+
+  <!-- =======================================================
+                       PERFORMANCE WEB
+  ======================================================= -->
+  <div id="performanceWeb" class="tab-content">
+    <h2>Performance Web – W42–W47</h2>
+
+    <div class="cc-grid">
+
+      <div class="cc-panel cc-table-panel">
+        <table class="cc-table" id="tablaPerformanceWeb"></table>
+        <div id="performanceWebVariacion" class="cc-variacion"></div>
+      </div>
+
+      <div class="cc-panel">
+        <h3 class="cc-subtitle">Cancelaciones por mes</h3>
+        <div id="graficoPerformanceWebCancelMes"></div>
+      </div>
+
+      <div class="cc-panel">
+        <h3 class="cc-subtitle">Arrival Date</h3>
+        <div id="graficoPerformanceWebArrival"></div>
+      </div>
+
+      <div class="cc-panel cc-full">
+        <div id="graficoPerformanceWebLineas"></div>
+      </div>
+
+      <div class="interpretacion" id="interpretacion-performanceWeb"></div>
+
+    </div>
+  </div>
+
+  <!-- =======================================================
+                       FACEBOOK (TAB COMPLETO)
+  ======================================================= -->
+  <div id="facebook" class="tab-content">
+    <h2>Facebook Ads – W42–W47</h2>
+
+    <!-- KPIs SUPERIORES -->
+    <div class="fb-kpi-box">
+
+      <div class="fb-kpi">
+        <label>Spend</label>
+        <div class="valor" id="fb-spend">–</div>
+      </div>
+
+      <div class="fb-kpi">
+        <label>Clics</label>
+        <div class="valor" id="fb-clics">–</div>
+      </div>
+
+      <div class="fb-kpi">
+        <label>Leads</label>
+        <div class="valor" id="fb-leads">–</div>
+      </div>
+
+      <div class="fb-kpi">
+        <label>Revenue</label>
+        <div class="valor" id="fb-revenue">–</div>
+      </div>
+
+      <div class="fb-kpi">
+        <label>CTR</label>
+        <div class="valor" id="fb-ctr">–</div>
+      </div>
+
+      <div class="fb-kpi">
+        <label>ROAS</label>
+        <div class="valor" id="fb-roas">–</div>
+      </div>
+
+    </div>
+
+    <!-- TABLA FACEBOOK -->
+    <div class="grafico-wrapper">
+      <table id="tablaFacebook" class="fb-table"></table>
+    </div>
+
+    <!-- GRÁFICO FACEBOOK -->
+    <div class="grafico-wrapper">
+      <div id="graficoFacebook"></div>
+    </div>
+
+    <div class="interpretacion" id="interpretacion-facebook"></div>
+  </div>
+
+  <!-- =======================================================
+                       FUNNEL E-COMMERCE
+  ======================================================= -->
+  <div id="funnelEcommerce" class="tab-content">
+    <h2>FUNNEL E-COMMERCE – W42–W47</h2>
+
+    <div class="selector">
+      <label>Selecciona semana:</label>
+      <select id="funnelSelector">
+        <option value="W42">W42</option>
+        <option value="W43">W43</option>
+        <option value="W44">W44</option>
+        <option value="W45">W45</option>
+        <option value="W46">W46</option>
+        <option value="W47">W47</option>
+      </select>
+    </div>
+
+    <div class="funnel-step" id="funnel-visitas"></div>
+    <div class="funnel-step" id="funnel-motor"></div>
+    <div class="funnel-step" id="funnel-carrito"></div>
+    <div class="funnel-step" id="funnel-cotizacion"></div>
+    <div class="funnel-step" id="funnel-compra"></div>
+
+    <div class="grafico-wrapper" style="margin-top: 25px;">
+      <h3>Gráfico Funnel E-Commerce</h3>
+      <div id="graficoFunnelEcommerce"></div>
+    </div>
+  </div>
+
+  <!-- JS GENERAL -->
+  <script src="app.js"></script>
+
+</body>
+</html>
+
 
